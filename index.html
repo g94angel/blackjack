@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <h1>Blackjack</h1>
+  <div class="container">
+    <h1>Blackjack</h1>
+    <em><p id="message-el">Want to play a round?</p></em>
+    <button onclick="play()" id="play-button">Let's gamble!</button>
+    <p id="cards"></p>
+    <p id="sum"></p>
+    <button hidden onclick="anotherCard()" id="another-card">Another card?</button>
+    <button hidden onclick="playAgain()" id="play-again">Play again?</button>
+  </div>
   <script src="index.js"></script>
 </body>
 </html>
