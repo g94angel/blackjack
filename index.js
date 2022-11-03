@@ -1,5 +1,5 @@
-const cards = document.getElementById('cards');
-const cardSum = document.getElementById('sum');
+const cardsEl = document.getElementById('cards-el');
+const sumEl = document.getElementById('sum-el');
 const messageEl = document.getElementById('message-el');
 const playButton = document.getElementById('play-button');
 const another_card = document.getElementById('another-card');
@@ -9,68 +9,64 @@ let gameStarted = false;
 let hasBlackjack = false;
 let isAlive = true;
 let message;
-let totalSum;
+let sum;
 
 function newCards() {
   const one = Math.floor(Math.random() * 10 + 2);
   const two = Math.floor(Math.random() * 10 + 2);
-  let sum = one + two;
-  return { one, two, sum };
+  sum = one + two;
+  return { one, two };
 }
 
 function play() {
   playButton.setAttribute('hidden', true);
   const userCards = newCards();
-  cards.textContent = `Cards: ${userCards.one}, ${userCards.two}`;
-  cardSum.textContent = `Sum: ${userCards.sum}`;
-  totalSum = userCards.sum;
-  startGame(totalSum);
+  cardsEl.textContent = `Cards: ${userCards.one}, ${userCards.two}`;
+  sumEl.textContent = `Sum: ${sum}`;
+  startGame();
 }
 
 function anotherCard() {
   const randNum = Math.floor(Math.random() * 10 + 2);
-  cards.textContent += `, ${randNum}`;
-  totalSum += randNum;
-  cardSum.textContent = `Sum: ${totalSum}`;
-  startGame(totalSum);
+  cardsEl.textContent += `, ${randNum}`;
+  sum += randNum;
+  sumEl.textContent = `Sum: ${sum}`;
+  startGame();
 }
 
-function startGame(userSum) {
-  totalSum = userSum;
-  if (userSum <= 20) {
-    message = "You're still in";
-    messageEl.textContent = message;
+function startGame() {
+  // sum = userSum;
+  if (sum <= 20) {
+    message = 'Do you want to draw another card?';
     another_card.removeAttribute('hidden');
-  } else if (userSum === 21) {
+  } else if (sum === 21) {
     hasBlackjack = true;
-    message = 'You won!';
-    messageEl.textContent = message;
+    message = 'You have Blackjack. Do you want to play again?';
     another_card.setAttribute('hidden', true);
     play_again.removeAttribute('hidden');
   } else {
-    message = 'You lost.';
-    messageEl.textContent = message;
+    message = 'Bust. Do you want to play again?';
     another_card.setAttribute('hidden', true);
     play_again.removeAttribute('hidden');
     isAlive = false;
     playing = false;
   }
+  messageEl.textContent = message;
 }
 
 function reset() {
-  cards.textContent = '';
-  cardSum.textContent = '';
+  cardsEl.textContent = '';
+  sumEl.textContent = '';
 }
 
 function playAgain() {
   reset();
   const userCards = newCards();
-  totalSum = userCards.sum;
   playButton.setAttribute('hidden', true);
   play_again.setAttribute('hidden', true);
-  cards.textContent += `Cards: ${userCards.one}, ${userCards.two}`;
-  cardSum.textContent += `Sum: ${userCards.sum}`;
-  startGame(userCards.sum);
+  cardsEl.textContent += `Cards: ${userCards.one}, ${userCards.two}`;
+  sumEl.textContent += `Sum: ${sum}`;
+  startGame();
 }
 
 // if (hasBlackjack) {
@@ -78,9 +74,3 @@ function playAgain() {
 // } else if (isAlive) {
 //   console.log('Do you want another card?');
 // }
-
-// console.log(message);
-// console.log('add', '5' + 2); // adds them - string operation
-// console.log('sub', '5' - 2); // subs them - math operation
-// console.log('add', 2 + '5'); // adds them
-// console.log('sub', 2 - '5'); // subs them - math operation
