@@ -1,16 +1,17 @@
 body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-image: url(table.jpeg);
+    background-image: url(poker.jpeg);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 h1 {
     color: black;
 }
 
-/* #message-el {
-
-} */
+#message-el {
+  font-style: italic;
+}
 
 .container {
   display: flex;
