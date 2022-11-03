@@ -6,25 +6,28 @@ const another_card = document.getElementById('another-card');
 const play_again = document.getElementById('play-again');
 
 function getRandomCard() {
-  return Math.floor(Math.random() * 10 + 2);
+  const randomNum = Math.floor(Math.random() * 13 + 1);
+  if (randomNum === 1) return 11;
+  else if (randomNum > 10) return 10;
+  else return randomNum;
 }
-const firstCard = getRandomCard();
-const secondCard = getRandomCard();
-let sum = firstCard + secondCard;
-
-let cardsArray = [firstCard, secondCard];
 
 let hasBlackjack = false;
-let isAlive = true;
+let isAlive = false;
 let message;
 
 function startGame() {
+  isAlive = true;
+  const firstCard = getRandomCard();
+  const secondCard = getRandomCard();
+  let sum = 0;
+  let cardsArray = [firstCard, secondCard];
   playButton.setAttribute('hidden', true);
   cardsEl.textContent = 'Cards:';
-  // for (let i = 0; i < cardsArray.length; i++) {
-  cardsEl.textContent += ` ${cardsArray[0]}, ${cardsArray[1]}`;
-  //   sum += cardsArray[i];
-  // }
+  for (let i = 0; i < cardsArray.length; i++) {
+    cardsEl.textContent += ` ${cardsArray[i]}`;
+    sum += cardsArray[i];
+  }
   sumEl.textContent = `Sum: ${sum}`;
   renderGame();
 }
@@ -32,12 +35,7 @@ function startGame() {
 function anotherCard() {
   const newCard = getRandomCard();
   cardsArray.push(newCard);
-  cardsEl.textContent += `, ${cardsArray[cardsArray.length - 1]}`;
-  console.log(newCard);
-
-  sum += newCard;
-  sumEl.textContent = `Sum: ${sum}`;
-  renderGame();
+  startGame();
 }
 
 function renderGame() {
@@ -60,6 +58,7 @@ function renderGame() {
 }
 
 function reset() {
+  cardsArray = [firstCard, secondCard];
   cardsEl.textContent = '';
   sumEl.textContent = '';
 }
