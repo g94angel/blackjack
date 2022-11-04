@@ -2,6 +2,7 @@ let player = {
   name: 'Angel',
   chips: 100,
 };
+
 let sum = 0;
 let cardsArray = [];
 let hasBlackjack = false;
@@ -61,7 +62,6 @@ function renderGame() {
     message = 'You have Blackjack! Do you want to cash out or play again?';
     another_card.setAttribute('hidden', true);
     cashOutEl.removeAttribute('hidden');
-    // isAlive = false;
     play_again.removeAttribute('hidden');
   } else {
     message = 'Bust. Do you want to play again?';
