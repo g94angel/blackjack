@@ -1,12 +1,13 @@
 body {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    background-image: url(poker.webp);
-    background-size: cover;
-    /* background-repeat: no-repeat; */
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+  /* background-image: url(poker.webp);
+    background-size: cover; */
+  /* background-repeat: no-repeat; */
 }
 
 h1 {
-    color: goldenrod;
+  color: goldenrod;
 }
 
 #message-el {
@@ -21,7 +22,7 @@ h1 {
   margin: 30px auto;
   /* background: rgba(245, 245, 245, 0.65); */
   width: 400px;
-  color: white;
+  color: black;
 }
 
 #play-button {
