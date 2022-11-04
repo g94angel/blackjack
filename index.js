@@ -15,6 +15,7 @@ const playerEl = document.getElementById('player-el');
 const playButton = document.getElementById('play-button');
 const another_card = document.getElementById('another-card');
 const play_again = document.getElementById('play-again');
+const cashOutEl = document.querySelector('#cash-out');
 
 playerEl.textContent = `${player.name}: $${player.chips}`;
 
@@ -57,8 +58,9 @@ function renderGame() {
     another_card.removeAttribute('hidden');
   } else if (sum === 21) {
     hasBlackjack = true;
-    message = 'You have Blackjack. Do you want to play again?';
+    message = 'You have Blackjack! Do you want to cash out or play again?';
     another_card.setAttribute('hidden', true);
+    cashOutEl.removeAttribute('hidden');
     // isAlive = false;
     play_again.removeAttribute('hidden');
   } else {
@@ -72,19 +74,22 @@ function renderGame() {
 
 function reset() {
   cardsArray = [];
+  sum = 0;
+  hasBlackjack = false;
   cardsEl.textContent = '';
   sumEl.textContent = '';
+  play_again.setAttribute('hidden', true);
+  cashOutEl.setAttribute('hidden', true);
+  startGame();
+  renderGame();
 }
 
 function playAgain() {
   reset();
-  startGame();
-  play_again.setAttribute('hidden', true);
-  renderGame();
 }
 
-// if (hasBlackjack) {
-//   console.log('Do you want to cash out?');
-// } else if (isAlive) {
-//   console.log('Do you want another card?');
-// }
+function cashOut() {
+  alert("Congrats, you're now a millionaire!");
+  cashOutEl.setAttribute('hidden', true);
+  reset();
+}
