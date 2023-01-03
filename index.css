@@ -31,4 +31,5 @@ button {
   background: goldenrod;
   margin-bottom: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
